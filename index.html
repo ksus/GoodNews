@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GoodNews – niezbędnik ewangelisty</title>
+  <meta name="description" content="GoodNews – niezbędnik ewangelisty: Cztery Prawa Duchowego Życia, The Four i Teotest. Działa offline.">
+  <meta name="theme-color" content="#f6f1e7">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="GoodNews">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Zastosuj motyw i rozmiar czcionki zanim strona się narysuje (bez migania). */
+    try {
+      var s = JSON.parse(localStorage.getItem("goodnews.settings") || "{}");
+      if (s.theme) document.documentElement.setAttribute("data-theme", s.theme);
+      if (s.fontStep != null) document.documentElement.style.setProperty("--fs", [0.85,1,1.15,1.3,1.5,1.75][s.fontStep] || 1);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Przejdź do treści</a>
+  <header class="topbar" id="topbar">
+    <button class="icon-btn" id="backBtn" aria-label="Wstecz" hidden>
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <h1 id="pageTitle">GoodNews</h1>
+    <div class="topbar-extra" id="topbarExtra"></div>
+    <a class="icon-btn" id="settingsBtn" href="#/settings" aria-label="Ustawienia">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M12 15.2a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zM19.4 13.5a7.6 7.6 0 000-3l2-1.6-2-3.4-2.4 1a7.5 7.5 0 00-2.6-1.5L14 2.4h-4l-.4 2.6A7.5 7.5 0 007 6.5l-2.4-1-2 3.4 2 1.6a7.6 7.6 0 000 3l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 002.6 1.5l.4 2.6h4l.4-2.6a7.5 7.5 0 002.6-1.5l2.4 1 2-3.4-2-1.6z"/></svg>
+    </a>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <noscript><p style="padding:1rem">Ta aplikacja wymaga włączonego JavaScriptu.</p></noscript>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

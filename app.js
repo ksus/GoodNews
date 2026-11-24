@@ -88,7 +88,7 @@
     document.title = title === "GoodNews" ? "GoodNews – niezbędnik ewangelisty" : title + " · GoodNews";
     const b = $("#backBtn");
     b.hidden = !back;
-    b.onclick = back ? () => { location.hash = back; } : null;
+    b.onclick = back ? goBack : null;
     const ex = $("#topbarExtra");
     ex.innerHTML = "";
     if (extra) ex.append(extra);
@@ -163,13 +163,13 @@
         ${slide.page ? `<span class="page-no" aria-label="Strona ${slide.page}">${slide.page}</span>` : ""}
       </article>
       <div class="pager">
-        <a class="btn" id="prev" href="#/four-laws/${idx}" ${idx === 0 ? 'aria-disabled="true"' : ""}>← Wstecz</a>
+        <a class="btn" data-nav id="prev" href="#/four-laws/${idx}" ${idx === 0 ? 'aria-disabled="true"' : ""}>← Wstecz</a>
         <span class="count">${idx + 1} / ${LAWS_SLIDES.length}</span>
         ${last
-          ? `<a class="btn primary" href="#/">Zakończ</a>`
-          : `<a class="btn primary" id="next" href="#/four-laws/${idx + 2}">Dalej →</a>`}
+          ? `<button type="button" class="btn primary" data-back>Zakończ</button>`
+          : `<a class="btn primary" data-nav id="next" href="#/four-laws/${idx + 2}">Dalej →</a>`}
       </div>`;
-    const go = i => { if (i >= 0 && i < LAWS_SLIDES.length) location.hash = "#/four-laws/" + (i + 1); };
+    const go = i => { if (i >= 0 && i < LAWS_SLIDES.length) nav("#/four-laws/" + (i + 1)); };
     main.querySelectorAll(".progress button").forEach(b => b.onclick = () => go(+b.dataset.i));
     enableSwipe($("#slide"), () => go(idx + 1), () => go(idx - 1));
     const onKey = e => {
@@ -251,7 +251,7 @@
           <div class="lead">${TEOTEST_INTRO.lead}</div>
           <p>${TEOTEST_INTRO.sub}</p>
           <div class="actions">
-            <a class="btn primary" href="#/teotest/1">Zaczynamy – pytanie 1</a>
+            <a class="btn primary" data-nav href="#/teotest/1">Zaczynamy – pytanie 1</a>
           </div>
         </section>
         <details class="help" open>
@@ -266,7 +266,7 @@
     const track = settings.track === "ateo" ? "ateo" : "teo";
     const item = TEOTEST[q - 1][track];
     const chips = TEOTEST.map((_, i) =>
-      `<a class="chip" href="#/teotest/${i + 1}" ${i + 1 === q ? 'aria-current="step"' : ""} aria-label="Pytanie ${i + 1}">${i + 1}</a>`).join("");
+      `<a class="chip" data-nav href="#/teotest/${i + 1}" ${i + 1 === q ? 'aria-current="step"' : ""} aria-label="Pytanie ${i + 1}">${i + 1}</a>`).join("");
     const last = q === TEOTEST.length;
     main.innerHTML = `
       <div class="chips" role="navigation" aria-label="Pytania">${chips}</div>
@@ -283,17 +283,17 @@
         <p>${item.help}</p>
       </details>
       <div class="pager">
-        <a class="btn" href="#/teotest/${q - 1}" ${q === 1 ? 'aria-disabled="true"' : ""}>← Wstecz</a>
+        <a class="btn" data-nav href="#/teotest/${q - 1}" ${q === 1 ? 'aria-disabled="true"' : ""}>← Wstecz</a>
         <span class="count">${q} / ${TEOTEST.length}</span>
         ${last
-          ? `<a class="btn primary" href="#/four-laws">Cztery Prawa →</a>`
-          : `<a class="btn primary" href="#/teotest/${q + 1}">Dalej →</a>`}
+          ? `<a class="btn primary" data-nav href="#/four-laws">Cztery Prawa →</a>`
+          : `<a class="btn primary" data-nav href="#/teotest/${q + 1}">Dalej →</a>`}
       </div>`;
     main.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
       settings.track = b.dataset.track; saveSettings();
       route();
     });
-    const go = n => { if (n >= 1 && n <= TEOTEST.length) location.hash = "#/teotest/" + n; };
+    const go = n => { if (n >= 1 && n <= TEOTEST.length) nav("#/teotest/" + n); };
     enableSwipe($("#qcard"), () => go(q + 1), () => go(q - 1));
     const onKey = e => {
       if (e.key === "ArrowRight") go(q + 1);
@@ -398,6 +398,32 @@
     cleanup = null;
     window.scrollTo(0, 0);
   }
+
+  /* ---------- nawigacja bez zaśmiecania historii ----------
+     Przejścia WEWNĄTRZ książeczki (dalej/wstecz, numery pytań) podmieniają wpis w historii,
+     więc przycisk „Wstecz” telefonu wraca na ekran główny, a z ekranu głównego wychodzi z aplikacji. */
+  if (!history.state) history.replaceState({ root: true }, "", location.href);
+
+  function nav(hash) {
+    history.replaceState(history.state, "", hash);
+    route();
+    main.focus({ preventScroll: true });
+  }
+
+  function goBack() {
+    if (history.state && history.state.root) nav("#/");
+    else history.back();
+  }
+
+  document.addEventListener("click", e => {
+    const back = e.target.closest("[data-back]");
+    if (back) { e.preventDefault(); goBack(); return; }
+    const link = e.target.closest("a[data-nav], .slide a[href^='#/']");
+    if (link && !e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
+      e.preventDefault();
+      nav(link.getAttribute("href"));
+    }
+  });
 
   /* ---------- router ---------- */
   function route() {

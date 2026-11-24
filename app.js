@@ -219,7 +219,9 @@
       btn.classList.toggle("over", left <= 0);
       btn.setAttribute("aria-label", "Stoper 10 minut: " + fmt(left) + (timer.running ? ", działa. Dotknij, aby wstrzymać." : ". Dotknij, aby uruchomić. Przytrzymaj, aby wyzerować."));
     };
+    let longPressed = false;
     btn.onclick = () => {
+      if (longPressed) { longPressed = false; return; }
       if (timer.running) { timer.left = timer.endAt - Date.now(); timer.running = false; }
       else {
         if (timer.left <= 0) timer.left = TEO_MINUTES * 60000;
@@ -229,7 +231,7 @@
     };
     let hold;
     const reset = () => { timer.running = false; timer.left = TEO_MINUTES * 60000; paint(); toast("Stoper wyzerowany"); };
-    btn.addEventListener("pointerdown", () => { hold = setTimeout(() => { hold = null; reset(); }, 700); });
+    btn.addEventListener("pointerdown", () => { longPressed = false; hold = setTimeout(() => { hold = null; longPressed = true; reset(); }, 700); });
     ["pointerup", "pointerleave", "pointercancel"].forEach(ev => btn.addEventListener(ev, () => clearTimeout(hold)));
     btn.addEventListener("contextmenu", e => e.preventDefault());
     paint();

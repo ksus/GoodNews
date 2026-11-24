@@ -84,8 +84,7 @@ const LAWS_SLIDES = [
     html: `
       <p class="eyebrow">Książeczka</p>
       <h2 class="display">Czy słyszałeś o Czterech Prawach Duchowego Życia?</h2>
-      <p>To najszerzej używana na świecie prezentacja ewangelii Chrystusa. Na niej wyrósł w Polsce Ruch Oazowy „Światło-Życie”. Miliony Polaków poznały ewangelię w tej formie. Jej treść zmieniła życie wielu. Teraz Ty masz okazję ją poznać!</p>
-      <p class="sign">Wspólnota „Posłannictwo”</p>`
+      <p>To najszerzej używana na świecie prezentacja ewangelii Chrystusa. Na niej wyrósł w Polsce Ruch Oazowy „Światło-Życie”. Miliony Polaków poznały ewangelię w tej formie. Jej treść zmieniła życie wielu. Teraz Ty masz okazję ją poznać!</p>`
   },
   {
     page: 4, big: "1",

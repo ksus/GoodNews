@@ -309,7 +309,9 @@ details.help p { margin: 0; padding: 0 1rem 1rem; color: var(--ink-soft); }
 main:focus, main:focus-visible { outline: none; }
 
 /* ---------- ekran główny (układ Bento) ---------- */
-body[data-view="home"] #pageTitle { font: 700 1.5rem/1.2 var(--sans); letter-spacing: -.2px; padding-left: .75rem; }
+#appIcon { display: none; }
+body[data-view="home"] #appIcon { display: block; width: 2.25rem; height: 2.25rem; margin-left: .5rem; flex: none; }
+body[data-view="home"] #pageTitle { font: 700 1.7rem/1.2 var(--sans); letter-spacing: -.2px; padding-left: .5rem; }
 .home-title { padding: .25rem .25rem 1.25rem; }
 .home-title h2 { margin: 0; font: 700 2.75rem/1.1 var(--sans); letter-spacing: -.5px; }
 .home-title p { margin: .25rem 0 0; font-size: 1rem; color: var(--ink-soft); }
@@ -343,3 +345,5 @@ body[data-view="home"] #pageTitle { font: 700 1.5rem/1.2 var(--sans); letter-spa
 }
 
 .tile .go svg { width: 1.5rem; height: 1.5rem; fill: currentColor; display: block; }
+
+.home-foot { background: transparent; justify-content: center; text-align: center; }

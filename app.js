@@ -77,6 +77,7 @@
     laws: '<path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>',
     four: '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',
     teo: '<path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>',
+    mega: '<path d="M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z"/>',
     go: '<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>'
   };
   const svg = (name, cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
@@ -113,6 +114,10 @@
         <a class="tile tile-3" href="#/teotest">
           ${svg("teo", "ico")}
           <div><h3>Teotest</h3><p>Teo czy Ateo?</p></div>
+        </a>
+        <a class="tile tile-4 row" href="#/encourage">
+          ${svg("mega", "ico")}
+          <div><h3>Dlaczego warto dzielić się Dobrą Nowiną?</h3><p>Zachęta i wersety o błogosławieństwie</p></div>
         </a>
         <div class="home-foot">
           <span class="offline-badge" id="netBadge"></span>
@@ -190,6 +195,27 @@
         <span><strong>Zobacz więcej na thefour.com</strong><small>Otwiera stronę zewnętrzną – wymaga internetu</small></span>
         <span aria-hidden="true">↗</span>
       </a>`;
+    window.scrollTo(0, 0);
+  }
+
+  /* --- Zachęta --- */
+  function viewEncourage() {
+    setChrome("Dlaczego warto?", { back: "#/" });
+    const E = ENCOURAGE;
+    main.innerHTML = `
+      <section class="enc">
+        <h2 class="enc-title">${E.title}</h2>
+        <p class="enc-lead">${E.lead}</p>
+        ${E.sections.map(s => `<article class="four-card"><h2>${s.h}</h2><p>${s.t}</p></article>`).join("")}
+        <article class="four-card">
+          <h2>${E.versesTitle}</h2>
+          ${E.verses.map(v => `<blockquote class="verse">${v.text} <cite>(${v.ref})</cite></blockquote>`).join("")}
+        </article>
+        <article class="four-card">
+          <h2>${E.startTitle}</h2>
+          <ol class="changes">${E.start.map(x => `<li>${x}</li>`).join("")}</ol>
+        </article>
+      </section>`;
     window.scrollTo(0, 0);
   }
 
@@ -428,6 +454,7 @@
       case "four-laws": viewLaws(param); break;
       case "thefour": viewFour(); break;
       case "teotest": viewTeo(param); break;
+      case "encourage": viewEncourage(); break;
       case "settings": viewSettings(); break;
       default: viewHome();
     }

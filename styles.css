@@ -16,6 +16,7 @@
   --t1-bg: #ffdbcc; --t1-fg: #360f00; --t1-icon: #9c4423;
   --t2-bg: #f6dccf; --t2-fg: #2c160d; --t2-icon: #77574a;
   --t3-bg: #f4e2a8; --t3-fg: #221b00; --t3-icon: #6a5e2f;
+  --t4-bg: #d9ead6; --t4-fg: #0d2012; --t4-icon: #2e6a43;
   --ok: #2e7d4f;
   --shadow: 0 1px 2px rgba(60, 40, 10, .08), 0 6px 20px rgba(60, 40, 10, .07);
   --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
@@ -39,6 +40,7 @@
   --t1-bg: #00497d; --t1-fg: #d1e4ff; --t1-icon: #9fcaff;
   --t2-bg: #3b4858; --t2-fg: #d7e3f8; --t2-icon: #bbc7db;
   --t3-bg: #543e5c; --t3-fg: #f3daf9; --t3-icon: #d6bedd;
+  --t4-bg: #1d5233; --t4-fg: #b4f2c6; --t4-icon: #98d5ab;
   --ok: #7fd6a0;
   --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
   color-scheme: dark;
@@ -59,6 +61,7 @@
     --t1-bg: #00497d; --t1-fg: #d1e4ff; --t1-icon: #9fcaff;
     --t2-bg: #3b4858; --t2-fg: #d7e3f8; --t2-icon: #bbc7db;
     --t3-bg: #543e5c; --t3-fg: #f3daf9; --t3-icon: #d6bedd;
+    --t4-bg: #1d5233; --t4-fg: #b4f2c6; --t4-icon: #98d5ab;
     --ok: #7fd6a0;
     --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
     color-scheme: dark;
@@ -346,3 +349,13 @@ body[data-view="home"] #pageTitle { font: 700 1.7rem/1.2 var(--sans); letter-spa
 .tile .go svg { width: 1.5rem; height: 1.5rem; fill: currentColor; display: block; }
 
 .home-foot { background: transparent; justify-content: center; text-align: center; }
+
+/* ---------- kafelek zachęty i ekran „Dlaczego warto?” ---------- */
+.tile-4 { --tbg: var(--t4-bg); --tfg: var(--t4-fg); --ticon: var(--t4-icon); }
+.tile.row { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: flex-start; gap: 1.1rem; min-height: 7.5rem; padding: 1.1rem 1.4rem; }
+.tile.row .ico { width: 4.5rem; height: 4.5rem; flex: none; }
+.tile.row h3 { font-size: 1.2rem; }
+@media (min-width: 700px) { .tile.row { min-height: 8rem; } }
+.enc-title { margin: .25rem 0 .4rem; font: 700 1.8rem/1.2 var(--sans); }
+.enc-lead { margin: 0 0 1.25rem; font-size: 1.1rem; color: var(--ink-soft); }
+.enc .four-card h2 { font-size: 1.25rem; text-transform: none; }

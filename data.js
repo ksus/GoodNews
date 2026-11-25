@@ -339,3 +339,45 @@ const TEOTEST = [
       help: "Nawet jeśli nie jest gotowy – zapytaj o zgodę na modlitwę. Zostaw kontakt i podziękuj za rozmowę." }
   }
 ];
+
+/* ---------- 4. Zachęta do ewangelizacji ---------- */
+
+const ENCOURAGE = {
+  title: "Dlaczego warto dzielić się Dobrą Nowiną?",
+  lead: "Dobra Nowina nie jest naszą własnością. Została nam powierzona, byśmy podali ją dalej.",
+  sections: [
+    {
+      h: "Bo ludzie potrzebują nadziei",
+      t: "Każdy, z kim rozmawiasz, jest kochany przez Boga i potrzebuje usłyszeć, co Jezus dla niego zrobił. Nie wiemy, kto jest gotowy, dlatego sieje się szeroko i z cierpliwością."
+    },
+    {
+      h: "Bo Jezus nas posłał",
+      t: "Wezwanie do niesienia Ewangelii nie jest dodatkiem dla wybranych. To polecenie Pana skierowane do wszystkich, którzy należą do Niego."
+    },
+    {
+      h: "Bo nie robimy tego sami",
+      t: "Jezus obiecał swoją obecność, a Duch Święty daje moc. Nie musisz znać odpowiedzi na wszystkie pytania. Wystarczy opowiedzieć, co Jezus zrobił w twoim życiu, i zaprosić do rozmowy."
+    },
+    {
+      h: "Bo to przynosi błogosławieństwo",
+      t: "Radość w niebie z jednego nawróconego, owoc, który zostaje na wieki, i wzrost własnej wiary. Kto dzieli się Dobrą Nowiną, sam doświadcza jej mocy na nowo."
+    }
+  ],
+  versesTitle: "Błogosławieństwo w tym dziele",
+  verses: [
+    { ref: "Mateusza 28,19-20", text: "Idźcie więc i nauczajcie wszystkie narody, udzielając im chrztu w imię Ojca i Syna, i Ducha Świętego, ucząc je zachowywać wszystko, co wam przykazałem. A oto Ja jestem z wami przez wszystkie dni, aż do skończenia świata." },
+    { ref: "Dzieje Apostolskie 1,8", text: "Otrzymacie moc Ducha Świętego, który zstąpi na was, i będziecie moimi świadkami w Jerozolimie i w całej Judei, i w Samarii, i aż po krańce ziemi." },
+    { ref: "Izajasz 52,7", text: "Jak piękne na górach są nogi posłańca, który ogłasza pokój, zwiastuje szczęście, który obwieszcza zbawienie, mówi do Syjonu: Twój Bóg zaczął królować!" },
+    { ref: "Psalm 126,5-6", text: "Ci, którzy we łzach sieją, żąć będą w radości. Idą i płaczą, niosąc ziarno na zasiew, lecz powrócą z radością, niosąc swoje snopy." },
+    { ref: "Daniel 12,3", text: "Mądrzy będą świecić jak blask sklepienia, a ci, którzy wielu do sprawiedliwości doprowadzili, jak gwiazdy na wieki, na zawsze." },
+    { ref: "Łukasz 15,7", text: "Powiadam wam: Tak samo w niebie większa radość będzie z jednego grzesznika, który się nawraca, niż z dziewięćdziesięciu dziewięciu sprawiedliwych, którzy nie potrzebują nawrócenia." },
+    { ref: "Jakub 5,20", text: "Niech wie, że kto nawróci grzesznika z jego błędnej drogi, ocali duszę jego od śmierci i zakryje wiele grzechów." },
+    { ref: "2 Koryntian 5,20", text: "Jesteśmy więc posłami Chrystusa, a przez nas jak gdyby Bóg napominał. W imię Chrystusa prosimy: pojednajcie się z Bogiem!" }
+  ],
+  startTitle: "Zacznij już dziś",
+  start: [
+    "Pomódl się imiennie o jedną osobę, której chcesz opowiedzieć o Jezusie.",
+    "Zapytaj ją o to, w co wierzy, i naprawdę wysłuchaj odpowiedzi.",
+    "Opowiedz krótko, co Jezus zmienił w twoim życiu, i zaproponuj rozmowę z jednej z książeczek."
+  ]
+};

@@ -1,6 +1,6 @@
 /* GoodNews – Service Worker: pełna praca offline.
    Przy zmianie jakiegokolwiek pliku podnieś VERSION, aby urządzenia pobrały nową wersję. */
-const VERSION = "1.0.5";
+const VERSION = "1.0.6";
 const CACHE = "goodnews-" + VERSION;
 
 const ASSETS = [

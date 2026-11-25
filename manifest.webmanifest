@@ -10,7 +10,7 @@
   "display": "standalone",
   "orientation": "any",
   "background_color": "#fff8f5",
-  "theme_color": "#b24a14",
+  "theme_color": "#fff8f5",
   "categories": ["education", "lifestyle"],
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },

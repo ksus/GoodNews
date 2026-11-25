@@ -24,7 +24,7 @@
     const dark = settings.theme === "dark" ||
       (settings.theme === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
     const meta = $('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", dark ? "#141210" : "#f6f1e7");
+    if (meta) meta.setAttribute("content", dark ? "#0e1520" : "#fff8f5");
   }
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", applySettings);
   applySettings();
@@ -74,10 +74,12 @@
   }
 
   const ICONS = {
-    laws: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.2" opacity=".45"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.2" opacity=".45"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.2" opacity=".45"/></svg>',
-    four: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-10a4.2 4.2 0 017.5-2.6l-.5.6.5-.6A4.2 4.2 0 0119 11c0 5.6-7 10-7 10z"/></svg>',
-    teo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.4a2.9 2.9 0 115 1.9c-.8.8-2.2 1.2-2.2 2.7"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>'
+    laws: '<path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>',
+    four: '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',
+    teo: '<path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>',
+    go: '<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>'
   };
+  const svg = (name, cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
   const LOGO = '<svg class="logo" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#b24a14"/><path d="M256 150 v-70 M226 104 h60" stroke="#fff" stroke-width="22" stroke-linecap="round" fill="none"/><path d="M256 196 C206 168 146 166 100 184 v206 c46 -18 106 -16 156 12 c50 -28 110 -30 156 -12 V184 c-46 -18 -106 -16 -156 12 z" fill="#fff"/><path d="M256 196 v206" stroke="#b24a14" stroke-width="12"/></svg>';
 
   /* ---------- widoki ---------- */
@@ -99,32 +101,28 @@
   function viewHome() {
     setChrome("GoodNews");
     main.innerHTML = `
-      <section class="hero">
-        ${LOGO}
+      <section class="home-title">
         <h2>GoodNews</h2>
-        <p>Niezbędnik ewangelisty – narzędzia pomocne w rozmowie o Dobrej Nowinie. Działa bez internetu.</p>
+        <p>Niezbędnik ewangelisty. Działa bez internetu.</p>
       </section>
-      <nav class="cards" aria-label="Książeczki">
-        <a class="card" href="#/four-laws">
-          <span class="card-num">${ICONS.laws}</span>
-          <h3>Cztery Prawa Duchowego Życia</h3>
-          <p>Klasyczna prezentacja ewangelii krok po kroku, z modlitwą przyjęcia Chrystusa.</p>
-          <span class="tag">${LAWS_SLIDES.length} ekranów</span>
+      <nav class="bento" aria-label="Książeczki">
+        <a class="tile tile-1 wide" href="#/four-laws">
+          <div class="top">${svg("laws", "ico")}<span class="go">${svg("go", "")}</span></div>
+          <div><h3>Cztery Prawa Duchowego Życia</h3><p>${LAWS_SLIDES.length} ekranów z modlitwą</p></div>
         </a>
-        <a class="card" href="#/thefour">
-          <span class="card-num">${ICONS.four}</span>
-          <h3>The Four</h3>
-          <p>Cztery krótkie punkty: Bóg cię kocha, grzech, Jezus, twoja decyzja.</p>
-          <span class="tag">4 punkty</span>
+        <a class="tile tile-2" href="#/thefour">
+          ${svg("four", "ico")}
+          <div><h3>The Four</h3><p>4 punkty</p></div>
         </a>
-        <a class="card" href="#/teotest">
-          <span class="card-num">${ICONS.teo}</span>
-          <h3>Teotest</h3>
-          <p>${TEOTEST_INTRO.lead} 10 minut i 10 pytań, a wieczność, by żyć z odpowiedzią.</p>
-          <span class="tag">10 pytań</span>
+        <a class="tile tile-3" href="#/teotest">
+          ${svg("teo", "ico")}
+          <div><h3>Teotest</h3><p>Teo czy Ateo?</p></div>
         </a>
-      </nav>
-      <p class="footnote"><span class="offline-badge" id="netBadge"></span></p>`;
+        <div class="home-foot">
+          <span class="offline-badge" id="netBadge"></span>
+          <a href="#/settings">Ustawienia</a>
+        </div>
+      </nav>`;
     const badge = $("#netBadge");
     const upd = () => {
       badge.classList.toggle("off", !navigator.onLine);
@@ -438,6 +436,7 @@
       case "settings": viewSettings(); break;
       default: viewHome();
     }
+    document.body.dataset.view = name || "home";
     $("#settingsBtn").hidden = name === "settings";
   }
   window.addEventListener("hashchange", () => { route(); main.focus({ preventScroll: true }); });

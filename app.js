@@ -101,10 +101,6 @@
   function viewHome() {
     setChrome("GoodNews");
     main.innerHTML = `
-      <section class="home-title">
-        <h2>GoodNews</h2>
-        <p>Niezbędnik ewangelisty. Działa bez internetu.</p>
-      </section>
       <nav class="bento" aria-label="Książeczki">
         <a class="tile tile-1 wide" href="#/four-laws">
           <div class="top">${svg("laws", "ico")}<span class="go">${svg("go", "")}</span></div>
@@ -120,7 +116,6 @@
         </a>
         <div class="home-foot">
           <span class="offline-badge" id="netBadge"></span>
-          <a href="#/settings">Ustawienia</a>
         </div>
       </nav>`;
     const badge = $("#netBadge");
